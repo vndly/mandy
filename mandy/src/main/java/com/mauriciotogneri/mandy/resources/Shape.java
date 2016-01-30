@@ -2,7 +2,7 @@ package com.mauriciotogneri.mandy.resources;
 
 import android.graphics.Color;
 
-import jbox2d.common.Vec2;
+import org.jbox2d.common.Vec2;
 
 import java.util.List;
 

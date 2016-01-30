@@ -1,19 +1,19 @@
 package com.mauriciotogneri.mandy.physics;
 
-import jbox2d.callbacks.ContactListener;
-import jbox2d.callbacks.DebugDraw;
-import jbox2d.collision.broadphase.BroadPhaseStrategy;
-import jbox2d.collision.broadphase.DynamicTree;
-import jbox2d.common.Color3f;
-import jbox2d.common.OBBViewportTransform;
-import jbox2d.common.Transform;
-import jbox2d.common.Vec2;
-import jbox2d.dynamics.Body;
-import jbox2d.dynamics.BodyDef;
-import jbox2d.dynamics.World;
-import jbox2d.particle.ParticleColor;
-import jbox2d.pooling.IWorldPool;
-import jbox2d.pooling.normal.DefaultWorldPool;
+import org.jbox2d.callbacks.ContactListener;
+import org.jbox2d.callbacks.DebugDraw;
+import org.jbox2d.collision.broadphase.BroadPhaseStrategy;
+import org.jbox2d.collision.broadphase.DynamicTree;
+import org.jbox2d.common.Color3f;
+import org.jbox2d.common.OBBViewportTransform;
+import org.jbox2d.common.Transform;
+import org.jbox2d.common.Vec2;
+import org.jbox2d.dynamics.Body;
+import org.jbox2d.dynamics.BodyDef;
+import org.jbox2d.dynamics.World;
+import org.jbox2d.particle.ParticleColor;
+import org.jbox2d.pooling.IWorldPool;
+import org.jbox2d.pooling.normal.DefaultWorldPool;
 
 public class Physics
 {
