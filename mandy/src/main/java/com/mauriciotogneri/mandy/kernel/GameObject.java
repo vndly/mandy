@@ -9,7 +9,7 @@ import com.mauriciotogneri.mandy.resources.Mesh;
 import com.mauriciotogneri.mandy.resources.Model;
 import com.mauriciotogneri.mandy.screen.Camera;
 
-import org.jbox2d.dynamics.Body;
+import jbox2d.dynamics.Body;
 
 import java.util.List;
 

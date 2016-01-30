@@ -1,6 +1,6 @@
 package com.mauriciotogneri.mandy.resources;
 
-import org.jbox2d.dynamics.BodyType;
+import jbox2d.dynamics.BodyType;
 
 import java.util.List;
 

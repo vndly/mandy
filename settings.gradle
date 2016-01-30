@@ -1,1 +1,1 @@
-include ':mandy', ':jbox2d'
+include ':mandy'

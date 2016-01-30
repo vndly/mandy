@@ -6,7 +6,7 @@ import android.opengl.Matrix;
 import com.mauriciotogneri.mandy.resources.Mesh;
 import com.mauriciotogneri.mandy.screen.Camera;
 
-import org.jbox2d.common.Vec2;
+import jbox2d.common.Vec2;
 
 import java.util.List;
 
