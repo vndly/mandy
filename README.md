@@ -1,2 +1,1 @@
-# mandy
-Mandy
+# Mandy
