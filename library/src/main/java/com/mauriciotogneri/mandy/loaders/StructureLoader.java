@@ -7,16 +7,15 @@ import com.mauriciotogneri.mandy.resources.Shape;
 import com.mauriciotogneri.mandy.resources.Structure;
 
 import org.jbox2d.common.Vec2;
-import org.jbox2d.dynamics.BodyType;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class StructureLoader
 {
-    public Structure load(BodyType bodyType, JsonBody json)
+    public Structure load(JsonBody json)
     {
-        Structure structure = new Structure(bodyType);
+        Structure structure = new Structure();
         structure.load(getShapes(json.shapes));
 
         return structure;

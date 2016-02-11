@@ -16,20 +16,14 @@ import java.util.List;
 
 public class Structure
 {
-    private final BodyType type;
     private List<Shape> shapes;
-
-    public Structure(BodyType type)
-    {
-        this.type = type;
-    }
 
     public void load(List<Shape> shapes)
     {
         this.shapes = shapes;
     }
 
-    public Body addTo(float x, float y, Physics physics)
+    public Body addTo(float x, float y, BodyType type, Physics physics, int group, boolean isSensor)
     {
         BodyDef bodyDef = new BodyDef();
         bodyDef.position.set(x, y);
@@ -39,13 +33,13 @@ public class Structure
 
         for (Shape shape : shapes)
         {
-            addFixture(body, shape);
+            addFixture(body, shape, group, isSensor);
         }
 
         return body;
     }
 
-    private void addFixture(Body body, Shape shape)
+    private void addFixture(Body body, Shape shape, int group, boolean isSensor)
     {
         Vec2[] vertices = shape.getVertices();
 
@@ -58,11 +52,18 @@ public class Structure
         fixtureDef.density = 1;
         fixtureDef.friction = 0;
         fixtureDef.restitution = 0;
+        fixtureDef.isSensor = isSensor;
+
+        if (group != 0)
+        {
+            fixtureDef.filter.categoryBits = group;
+            fixtureDef.filter.maskBits = ~group;
+        }
 
         body.createFixture(fixtureDef);
     }
 
-    public List<Mesh> getShadows(int color)
+    public Mesh[] getShadows(int color)
     {
         List<Mesh> result = new ArrayList<>(shapes.size());
 
@@ -76,6 +77,6 @@ public class Structure
             result.add(mesh);
         }
 
-        return result;
+        return result.toArray(new Mesh[result.size()]);
     }
 }

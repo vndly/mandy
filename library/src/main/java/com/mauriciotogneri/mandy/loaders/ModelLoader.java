@@ -35,7 +35,7 @@ public class ModelLoader
         List<Mesh> meshes = new ArrayList<>();
 
         StructureLoader structureLoader = new StructureLoader();
-        Structure structure = structureLoader.load(model.type, json.body);
+        Structure structure = structureLoader.load(json.body);
 
         MeshLoader meshLoader = new MeshLoader();
 
@@ -45,6 +45,6 @@ public class ModelLoader
             meshes.add(mesh);
         }
 
-        model.load(structure, meshes);
+        model.load(structure, meshes.toArray(new Mesh[meshes.size()]));
     }
 }

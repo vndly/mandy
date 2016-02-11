@@ -8,8 +8,6 @@ import com.mauriciotogneri.mandy.screen.Camera;
 
 import org.jbox2d.common.Vec2;
 
-import java.util.List;
-
 public class Renderer
 {
     private final float[] modelMatrix = new float[16];
@@ -32,9 +30,9 @@ public class Renderer
     public void onSurfaceCreated()
     {
         GLES20.glClearColor(0, 0, 0, 1);
-        GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
         GLES20.glEnable(GLES20.GL_DEPTH_TEST);
-        GLES20.glEnable(GLES20.GL_BLEND);
+        //GLES20.glEnable(GLES20.GL_BLEND);
+        //GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
 
         int vertexShader = compileShader(GLES20.GL_VERTEX_SHADER, vertexShaderSource);
         int fragmentShader = compileShader(GLES20.GL_FRAGMENT_SHADER, fragmentShaderSource);
@@ -74,12 +72,12 @@ public class Renderer
         mesh.render(positionHandler, colorHandler);
     }
 
-    public void render(List<Mesh> meshes, Vec2 position, float z, float scaleX, float scaleY, float angle)
+    public void render(Mesh[] meshes, Vec2 position, float z, float scaleX, float scaleY, float angle)
     {
         render(meshes, position.x, position.y, z, scaleX, scaleY, angle);
     }
 
-    public void render(List<Mesh> meshes, float x, float y, float z, float scaleX, float scaleY, float angle)
+    public void render(Mesh[] meshes, float x, float y, float z, float scaleX, float scaleY, float angle)
     {
         moveTo(x, y, z, scaleX, scaleY, angle);
 

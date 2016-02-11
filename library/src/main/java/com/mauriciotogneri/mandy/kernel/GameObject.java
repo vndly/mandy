@@ -10,16 +10,15 @@ import com.mauriciotogneri.mandy.resources.Model;
 import com.mauriciotogneri.mandy.screen.Camera;
 
 import org.jbox2d.dynamics.Body;
-
-import java.util.List;
+import org.jbox2d.dynamics.BodyType;
 
 public class GameObject implements Entity
 {
     protected float z;
 
     protected final Body body;
-    protected final List<Mesh> meshes;
-    protected final List<Mesh> shadow;
+    protected final Mesh[] meshes;
+    protected final Mesh[] shadow;
 
     private DisplayMode displayMode;
 
@@ -40,13 +39,20 @@ public class GameObject implements Entity
         }
     }
 
-    public GameObject(float x, float y, float z, Model model, Physics physics)
+    public GameObject(float x, float y, float z, BodyType type, Model model, Physics physics, int group, boolean isSensor)
     {
         this.z = z;
-        this.body = model.structure.addTo(x, y, physics);
+        this.body = model.structure.addTo(x, y, type, physics, group, isSensor);
         this.meshes = model.meshes;
-        this.shadow = model.structure.getShadows(Color.YELLOW);
+        this.shadow = model.structure.getShadows(Color.argb(255, 255, 100, 180)); // pink
         this.displayMode = DisplayMode.NORMAL;
+
+        this.body.setUserData(this);
+    }
+
+    public Body getBody()
+    {
+        return body;
     }
 
     @Override

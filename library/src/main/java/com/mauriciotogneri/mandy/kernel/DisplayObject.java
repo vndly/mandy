@@ -18,7 +18,7 @@ public class DisplayObject implements Entity
     protected float y;
     protected float z;
 
-    protected final List<Mesh> meshes;
+    protected final Mesh[] meshes;
 
     public DisplayObject(float x, float y, float z, Model model)
     {
