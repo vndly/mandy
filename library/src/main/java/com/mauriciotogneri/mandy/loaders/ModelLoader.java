@@ -16,7 +16,7 @@ import java.util.List;
 
 public class ModelLoader
 {
-    public void load(List<Model> models, Context context)
+    public void load(Model[] models, Context context)
     {
         AssetManager assetManager = context.getAssets();
 

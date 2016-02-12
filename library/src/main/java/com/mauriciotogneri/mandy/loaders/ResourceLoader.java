@@ -18,19 +18,19 @@ public class ResourceLoader
         this.context = context;
     }
 
-    public void loadSounds(List<Sound> sounds)
+    public void loadSounds(Sound[] sounds)
     {
         AudioManager audioManager = AudioManager.getInstance();
         audioManager.loadSounds(sounds, context);
     }
 
-    public void loadAudios(List<Music> musics)
+    public void loadAudios(Music[] musics)
     {
         AudioManager audioManager = AudioManager.getInstance();
         audioManager.loadMusic(musics, context);
     }
 
-    public void loadModels(List<Model> models)
+    public void loadModels(Model[] models)
     {
         ModelLoader modelLoader = new ModelLoader();
         modelLoader.load(models, context);

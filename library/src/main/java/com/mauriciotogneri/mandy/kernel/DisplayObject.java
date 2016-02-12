@@ -6,17 +6,21 @@ import com.mauriciotogneri.mandy.resources.Mesh;
 import com.mauriciotogneri.mandy.resources.Model;
 import com.mauriciotogneri.mandy.screen.Camera;
 
-import java.util.List;
-
 public class DisplayObject implements Entity
 {
     private final float startX;
     private final float startY;
     private final float startZ;
 
+    private final float startScaleX;
+    private final float startScaleY;
+
     protected float x;
     protected float y;
     protected float z;
+
+    protected float scaleX;
+    protected float scaleY;
 
     protected final Mesh[] meshes;
 
@@ -26,9 +30,15 @@ public class DisplayObject implements Entity
         this.y = y;
         this.z = z;
 
+        this.scaleX = 1;
+        this.scaleY = 1;
+
         this.startX = x;
         this.startY = y;
         this.startZ = z;
+
+        this.startScaleX = scaleX;
+        this.startScaleY = scaleY;
 
         this.meshes = model.meshes;
     }
@@ -38,6 +48,9 @@ public class DisplayObject implements Entity
         this.x = startX;
         this.y = startY;
         this.z = startZ;
+
+        this.scaleX = startScaleX;
+        this.scaleY = startScaleY;
     }
 
     @Override
@@ -48,6 +61,6 @@ public class DisplayObject implements Entity
     @Override
     public void render(Renderer renderer)
     {
-        renderer.render(meshes, x, y, z, 1, 1, 0);
+        renderer.render(meshes, x, y, z, scaleX, scaleY, 0);
     }
 }

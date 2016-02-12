@@ -7,8 +7,6 @@ import android.media.SoundPool;
 import com.mauriciotogneri.mandy.resources.Music;
 import com.mauriciotogneri.mandy.resources.Sound;
 
-import java.util.List;
-
 public class AudioManager
 {
     private final SoundPool soundPool;
@@ -31,7 +29,7 @@ public class AudioManager
         this.soundPool = new SoundPool(20, android.media.AudioManager.STREAM_MUSIC, 0);
     }
 
-    public void loadSounds(List<Sound> sounds, Context context)
+    public void loadSounds(Sound[] sounds, Context context)
     {
         AssetManager assetManager = context.getAssets();
 
@@ -41,7 +39,7 @@ public class AudioManager
         }
     }
 
-    public void loadMusic(List<Music> musics, Context context)
+    public void loadMusic(Music[] musics, Context context)
     {
         AssetManager assetManager = context.getAssets();
 

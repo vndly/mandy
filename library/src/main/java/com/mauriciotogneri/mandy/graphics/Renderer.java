@@ -30,9 +30,10 @@ public class Renderer
     public void onSurfaceCreated()
     {
         GLES20.glClearColor(0, 0, 0, 1);
-        GLES20.glEnable(GLES20.GL_DEPTH_TEST);
-        //GLES20.glEnable(GLES20.GL_BLEND);
-        //GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
+
+        //GLES20.glEnable(GLES20.GL_DEPTH_TEST);
+        GLES20.glEnable(GLES20.GL_BLEND);
+        GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
 
         int vertexShader = compileShader(GLES20.GL_VERTEX_SHADER, vertexShaderSource);
         int fragmentShader = compileShader(GLES20.GL_FRAGMENT_SHADER, fragmentShaderSource);
@@ -83,14 +84,14 @@ public class Renderer
 
         for (Mesh mesh : meshes)
         {
-            mesh.render(positionHandler, colorHandler);
+            render(mesh, x, y, z, scaleX, scaleY, angle);
         }
     }
 
     private void moveTo(float x, float y, float z, float scaleX, float scaleY, float angle)
     {
         Matrix.setIdentityM(modelMatrix, 0);
-        Matrix.translateM(modelMatrix, 0, x, y, z);
+        Matrix.translateM(modelMatrix, 0, x, y, 0);
         Matrix.scaleM(modelMatrix, 0, scaleX, scaleY, 1);
         Matrix.rotateM(modelMatrix, 0, (float) Math.toDegrees(angle), 0, 0, 1);
         Matrix.multiplyMM(finalMatrix, 0, projectionMatrix, 0, modelMatrix, 0);
