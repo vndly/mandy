@@ -7,8 +7,6 @@ import com.mauriciotogneri.mandy.resources.Model;
 import com.mauriciotogneri.mandy.resources.Music;
 import com.mauriciotogneri.mandy.resources.Sound;
 
-import java.util.List;
-
 public class ResourceLoader
 {
     private final Context context;
