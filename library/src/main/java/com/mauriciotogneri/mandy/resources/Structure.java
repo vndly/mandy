@@ -23,7 +23,7 @@ public class Structure
         this.shapes = shapes;
     }
 
-    public Body addTo(float x, float y, BodyType type, Physics physics, int group, boolean isSensor)
+    public Body addTo(float x, float y, BodyType type, Physics physics, int collisionCategory, int collisionMask, boolean isSensor)
     {
         BodyDef bodyDef = new BodyDef();
         bodyDef.position.set(x, y);
@@ -33,13 +33,13 @@ public class Structure
 
         for (Shape shape : shapes)
         {
-            addFixture(body, shape, group, isSensor);
+            addFixture(body, shape, collisionCategory, collisionMask, isSensor);
         }
 
         return body;
     }
 
-    private void addFixture(Body body, Shape shape, int group, boolean isSensor)
+    private void addFixture(Body body, Shape shape, int collisionCategory, int collisionMask, boolean isSensor)
     {
         Vec2[] vertices = shape.getVertices();
 
@@ -54,10 +54,10 @@ public class Structure
         fixtureDef.restitution = 0;
         fixtureDef.isSensor = isSensor;
 
-        if (group != 0)
+        if ((collisionCategory != 0) || (collisionMask != 0))
         {
-            fixtureDef.filter.categoryBits = group;
-            fixtureDef.filter.maskBits = ~group;
+            fixtureDef.filter.categoryBits = collisionCategory;
+            fixtureDef.filter.maskBits = collisionMask;
         }
 
         body.createFixture(fixtureDef);
