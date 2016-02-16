@@ -3,6 +3,7 @@ package com.mauriciotogneri.mandy.kernel;
 import android.view.View;
 
 import com.mauriciotogneri.mandy.debug.FPS;
+import com.mauriciotogneri.mandy.debug.Logger;
 import com.mauriciotogneri.mandy.debug.TimeCounter;
 import com.mauriciotogneri.mandy.graphics.Renderer;
 import com.mauriciotogneri.mandy.input.Input;
@@ -114,11 +115,6 @@ public class Engine implements android.opengl.GLSurfaceView.Renderer
         fps.tick();
     }
 
-    public void resume()
-    {
-        // TODO
-    }
-
     public void pause(boolean finishing)
     {
         synchronized (statusLock)
@@ -143,15 +139,10 @@ public class Engine implements android.opengl.GLSurfaceView.Renderer
                     }
                     catch (Exception e)
                     {
-                        // ignore
+                        Logger.error(e);
                     }
                 }
             }
         }
-    }
-
-    public void destroy()
-    {
-        // TODO
     }
 }

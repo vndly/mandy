@@ -1,4 +1,4 @@
-package com.mauriciotogneri.mandy.util;
+package com.mauriciotogneri.mandy.helpers;
 
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;

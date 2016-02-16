@@ -6,7 +6,7 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 
 import com.mauriciotogneri.mandy.debug.Logger;
-import com.mauriciotogneri.mandy.util.ResourceHelper;
+import com.mauriciotogneri.mandy.helpers.ResourceHelper;
 
 public class Music
 {

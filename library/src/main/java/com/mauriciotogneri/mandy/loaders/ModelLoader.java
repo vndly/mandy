@@ -4,12 +4,12 @@ import android.content.Context;
 import android.content.res.AssetManager;
 
 import com.google.gson.Gson;
+import com.mauriciotogneri.mandy.helpers.ResourceHelper;
 import com.mauriciotogneri.mandy.json.JsonMesh;
 import com.mauriciotogneri.mandy.json.JsonModel;
 import com.mauriciotogneri.mandy.resources.Mesh;
 import com.mauriciotogneri.mandy.resources.Model;
 import com.mauriciotogneri.mandy.resources.Structure;
-import com.mauriciotogneri.mandy.util.ResourceHelper;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -5,7 +5,7 @@ import android.content.res.AssetManager;
 import android.media.SoundPool;
 
 import com.mauriciotogneri.mandy.debug.Logger;
-import com.mauriciotogneri.mandy.util.ResourceHelper;
+import com.mauriciotogneri.mandy.helpers.ResourceHelper;
 
 public class Sound
 {
