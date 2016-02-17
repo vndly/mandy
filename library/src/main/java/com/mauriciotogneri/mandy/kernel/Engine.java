@@ -2,9 +2,7 @@ package com.mauriciotogneri.mandy.kernel;
 
 import android.view.View;
 
-import com.mauriciotogneri.mandy.debug.FPS;
 import com.mauriciotogneri.mandy.debug.Logger;
-import com.mauriciotogneri.mandy.debug.TimeCounter;
 import com.mauriciotogneri.mandy.graphics.Renderer;
 import com.mauriciotogneri.mandy.input.Input;
 import com.mauriciotogneri.mandy.screen.Camera;
@@ -14,8 +12,6 @@ import javax.microedition.khronos.opengles.GL10;
 
 public class Engine implements android.opengl.GLSurfaceView.Renderer
 {
-    private final FPS fps;
-    private final TimeCounter timeCounter;
     private final Renderer renderer;
 
     private final Game game;
@@ -34,12 +30,10 @@ public class Engine implements android.opengl.GLSurfaceView.Renderer
         RUNNING, IDLE, PAUSED, FINISHED
     }
 
-    public Engine(Game game, View view, FPS fps, TimeCounter timeCounter, String vertexShaderSource, String fragmentShaderSource)
+    public Engine(Game game, View view, String vertexShaderSource, String fragmentShaderSource)
     {
         this.game = game;
         this.view = view;
-        this.fps = fps;
-        this.timeCounter = timeCounter;
         this.renderer = new Renderer(vertexShaderSource, fragmentShaderSource);
     }
 
@@ -102,17 +96,11 @@ public class Engine implements android.opengl.GLSurfaceView.Renderer
 
     private void update(float delta)
     {
-        timeCounter.start();
-
         game.onUpdate(delta, input, camera);
 
         renderer.start(camera);
         game.onRender(renderer, camera);
         renderer.stop();
-
-        timeCounter.stop();
-
-        fps.tick();
     }
 
     public void pause(boolean finishing)
@@ -128,18 +116,18 @@ public class Engine implements android.opengl.GLSurfaceView.Renderer
                 else
                 {
                     status = Status.PAUSED;
-                }
 
-                while (true)
-                {
-                    try
+                    while (true)
                     {
-                        statusLock.wait();
-                        break;
-                    }
-                    catch (Exception e)
-                    {
-                        Logger.error(e);
+                        try
+                        {
+                            statusLock.wait();
+                            break;
+                        }
+                        catch (Exception e)
+                        {
+                            Logger.error(e);
+                        }
                     }
                 }
             }

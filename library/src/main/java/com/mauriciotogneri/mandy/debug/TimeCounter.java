@@ -1,5 +1,6 @@
 package com.mauriciotogneri.mandy.debug;
 
+import android.graphics.Typeface;
 import android.widget.TextView;
 
 import java.util.concurrent.TimeUnit;
@@ -18,6 +19,8 @@ public class TimeCounter
     public TimeCounter(TextView textView, String name, TimeUnit timeUnit, boolean enabled)
     {
         this.textView = textView;
+        this.textView.setTypeface(Typeface.MONOSPACE);
+
         this.name = name;
         this.timeUnit = timeUnit;
         this.enabled = enabled;
