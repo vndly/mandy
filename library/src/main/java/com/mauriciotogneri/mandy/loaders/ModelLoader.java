@@ -16,35 +16,28 @@ import java.util.List;
 
 public class ModelLoader
 {
-    public void load(Model[] models, Context context)
+    public Model getModel(String path, Context context)
     {
         AssetManager assetManager = context.getAssets();
 
         Gson gson = new Gson();
 
-        for (Model model : models)
-        {
-            String content = ResourceHelper.readFromAssetsAsString(assetManager, model.path);
-            JsonModel jsonModel = gson.fromJson(content, JsonModel.class);
-            loadModel(model, jsonModel);
-        }
-    }
+        String content = ResourceHelper.readFromAssetsAsString(assetManager, path);
+        JsonModel jsonModel = gson.fromJson(content, JsonModel.class);
 
-    private void loadModel(Model model, JsonModel json)
-    {
         List<Mesh> meshes = new ArrayList<>();
 
         StructureLoader structureLoader = new StructureLoader();
-        Structure structure = structureLoader.load(json.body);
+        Structure structure = structureLoader.load(jsonModel.body);
 
         MeshLoader meshLoader = new MeshLoader();
 
-        for (JsonMesh jsonMesh : json.meshes)
+        for (JsonMesh jsonMesh : jsonModel.meshes)
         {
             Mesh mesh = meshLoader.load(jsonMesh);
             meshes.add(mesh);
         }
 
-        model.load(structure, meshes.toArray(new Mesh[meshes.size()]));
+        return new Model(structure, meshes.toArray(new Mesh[meshes.size()]));
     }
 }

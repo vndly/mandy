@@ -3,7 +3,6 @@ package com.mauriciotogneri.mandy.loaders;
 import android.content.Context;
 
 import com.mauriciotogneri.mandy.audio.AudioManager;
-import com.mauriciotogneri.mandy.resources.Model;
 import com.mauriciotogneri.mandy.resources.Music;
 import com.mauriciotogneri.mandy.resources.Sound;
 
@@ -26,11 +25,5 @@ public class ResourceLoader
     {
         AudioManager audioManager = AudioManager.getInstance();
         audioManager.loadMusic(musics, context);
-    }
-
-    public void loadModels(Model[] models)
-    {
-        ModelLoader modelLoader = new ModelLoader();
-        modelLoader.load(models, context);
     }
 }
