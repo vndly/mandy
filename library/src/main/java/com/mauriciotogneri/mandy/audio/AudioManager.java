@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.media.SoundPool;
 
-import com.mauriciotogneri.mandy.resources.Music;
 import com.mauriciotogneri.mandy.resources.Sound;
 
 public class AudioManager
@@ -36,16 +35,6 @@ public class AudioManager
         for (Sound sound : sounds)
         {
             sound.load(assetManager, soundPool);
-        }
-    }
-
-    public void loadMusic(Music[] musics, Context context)
-    {
-        AssetManager assetManager = context.getAssets();
-
-        for (Music music : musics)
-        {
-            music.load(assetManager);
         }
     }
 

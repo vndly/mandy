@@ -1,6 +1,5 @@
 package com.mauriciotogneri.mandy.loaders;
 
-import android.content.Context;
 import android.content.res.AssetManager;
 
 import com.google.gson.Gson;
@@ -16,12 +15,10 @@ import java.util.List;
 
 public class ModelLoader
 {
-    public Model getModel(String path, Context context)
+    private final Gson gson = new Gson();
+
+    public Model load(String path, AssetManager assetManager)
     {
-        AssetManager assetManager = context.getAssets();
-
-        Gson gson = new Gson();
-
         String content = ResourceHelper.readFromAssetsAsString(assetManager, path);
         JsonModel jsonModel = gson.fromJson(content, JsonModel.class);
 
