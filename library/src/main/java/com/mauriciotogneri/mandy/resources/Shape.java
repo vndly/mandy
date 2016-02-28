@@ -4,25 +4,23 @@ import android.graphics.Color;
 
 import org.jbox2d.common.Vec2;
 
-import java.util.List;
-
 public class Shape
 {
-    private final List<Vec2> vertices;
+    private final Vec2[] vertices;
 
-    public Shape(List<Vec2> vertices)
+    public Shape(Vec2[] vertices)
     {
         this.vertices = vertices;
     }
 
     public Vec2[] getVertices()
     {
-        return vertices.toArray(new Vec2[vertices.size()]);
+        return vertices;
     }
 
     public float[] getShadow(int color)
     {
-        float[] buffer = new float[vertices.size() * (3 + 4)];
+        float[] buffer = new float[vertices.length * (3 + 4)];
 
         int index = 0;
 

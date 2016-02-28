@@ -11,14 +11,11 @@ import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Structure
 {
-    private List<Shape> shapes;
+    private final Shape[] shapes;
 
-    public void load(List<Shape> shapes)
+    public Structure(Shape[] shapes)
     {
         this.shapes = shapes;
     }
@@ -65,17 +62,19 @@ public class Structure
 
     public Mesh[] getShadows(int color)
     {
-        List<Mesh> result = new ArrayList<>(shapes.size());
+        Mesh[] meshes = new Mesh[shapes.length];
 
-        for (Shape shape : shapes)
+        for (int i = 0; i < shapes.length; i++)
         {
+            Shape shape = shapes[i];
+
             float[] buffer = shape.getShadow(color);
 
             Mesh mesh = new Mesh(GLES20.GL_TRIANGLE_FAN, buffer);
 
-            result.add(mesh);
+            meshes[i] = mesh;
         }
 
-        return result.toArray(new Mesh[result.size()]);
+        return meshes;
     }
 }

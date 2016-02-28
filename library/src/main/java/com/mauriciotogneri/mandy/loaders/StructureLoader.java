@@ -8,35 +8,42 @@ import com.mauriciotogneri.mandy.resources.Structure;
 
 import org.jbox2d.common.Vec2;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class StructureLoader
 {
     public Structure load(JsonBody json)
     {
-        Structure structure = new Structure();
-        structure.load(getShapes(json.shapes));
+        Shape[] shapes = getShapes(json.shapes);
 
-        return structure;
+        return new Structure(shapes);
     }
 
-    private List<Shape> getShapes(JsonShape[] shapes)
+    private Shape[] getShapes(JsonShape[] list)
     {
-        List<Shape> result = new ArrayList<>(shapes.length);
+        Shape[] shapes = new Shape[list.length];
 
-        for (JsonShape shape : shapes)
+        for (int i = 0; i < list.length; i++)
         {
-            List<Vec2> vertices = new ArrayList<>(shape.vertices.length);
+            JsonShape shape = list[i];
 
-            for (JsonVertex vertex : shape.vertices)
-            {
-                vertices.add(new Vec2(vertex.x, vertex.y));
-            }
+            Vec2[] vertices = getVertices(shape.vertices);
 
-            result.add(new Shape(vertices));
+            shapes[i] = new Shape(vertices);
         }
 
-        return result;
+        return shapes;
+    }
+
+    private Vec2[] getVertices(JsonVertex[] list)
+    {
+        Vec2[] vertices = new Vec2[list.length];
+
+        for (int i = 0; i < list.length; i++)
+        {
+            JsonVertex vertex = list[i];
+
+            vertices[i] = new Vec2(vertex.x, vertex.y);
+        }
+
+        return vertices;
     }
 }

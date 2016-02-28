@@ -5,16 +5,18 @@ import android.content.res.AssetManager;
 import android.media.SoundPool;
 
 import com.mauriciotogneri.mandy.debug.Logger;
-import com.mauriciotogneri.mandy.helpers.ResourceHelper;
+import com.mauriciotogneri.mandy.helpers.ResourceLoader;
 import com.mauriciotogneri.mandy.resources.Sound;
 
 public class SoundLoader
 {
+    private final ResourceLoader resourceLoader;
     private final SoundPool soundPool;
 
     @SuppressWarnings("deprecation")
     public SoundLoader()
     {
+        this.resourceLoader = new ResourceLoader();
         this.soundPool = new SoundPool(20, android.media.AudioManager.STREAM_MUSIC, 0);
     }
 
@@ -37,7 +39,7 @@ public class SoundLoader
         }
         finally
         {
-            ResourceHelper.closeDescriptor(assetDescriptor);
+            resourceLoader.closeDescriptor(assetDescriptor);
         }
     }
 }

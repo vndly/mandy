@@ -6,11 +6,18 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 
 import com.mauriciotogneri.mandy.debug.Logger;
-import com.mauriciotogneri.mandy.helpers.ResourceHelper;
+import com.mauriciotogneri.mandy.helpers.ResourceLoader;
 import com.mauriciotogneri.mandy.resources.Music;
 
 public class MusicLoader
 {
+    private final ResourceLoader resourceLoader;
+
+    public MusicLoader()
+    {
+        this.resourceLoader = new ResourceLoader();
+    }
+
     public Music load(String path, AssetManager assetManager)
     {
         AssetFileDescriptor assetDescriptor = null;
@@ -36,7 +43,7 @@ public class MusicLoader
         }
         finally
         {
-            ResourceHelper.closeDescriptor(assetDescriptor);
+            resourceLoader.closeDescriptor(assetDescriptor);
         }
     }
 }

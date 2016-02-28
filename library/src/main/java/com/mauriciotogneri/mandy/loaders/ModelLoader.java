@@ -3,38 +3,50 @@ package com.mauriciotogneri.mandy.loaders;
 import android.content.res.AssetManager;
 
 import com.google.gson.Gson;
-import com.mauriciotogneri.mandy.helpers.ResourceHelper;
+import com.mauriciotogneri.mandy.helpers.ResourceLoader;
 import com.mauriciotogneri.mandy.json.JsonMesh;
 import com.mauriciotogneri.mandy.json.JsonModel;
 import com.mauriciotogneri.mandy.resources.Mesh;
 import com.mauriciotogneri.mandy.resources.Model;
 import com.mauriciotogneri.mandy.resources.Structure;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class ModelLoader
 {
+    private final ResourceLoader resourceLoader;
     private final Gson gson = new Gson();
+
+    public ModelLoader()
+    {
+        this.resourceLoader = new ResourceLoader();
+    }
 
     public Model load(String path, AssetManager assetManager)
     {
-        String content = ResourceHelper.readFromAssetsAsString(assetManager, path);
+        String content = resourceLoader.readFromAssetsAsString(assetManager, path);
         JsonModel jsonModel = gson.fromJson(content, JsonModel.class);
-
-        List<Mesh> meshes = new ArrayList<>();
 
         StructureLoader structureLoader = new StructureLoader();
         Structure structure = structureLoader.load(jsonModel.body);
 
+        Mesh[] meshes = getMeshes(jsonModel.meshes);
+
+        return new Model(structure, meshes);
+    }
+
+    private Mesh[] getMeshes(JsonMesh[] list)
+    {
+        Mesh[] meshes = new Mesh[list.length];
         MeshLoader meshLoader = new MeshLoader();
 
-        for (JsonMesh jsonMesh : jsonModel.meshes)
+        for (int i = 0; i < list.length; i++)
         {
+            JsonMesh jsonMesh = list[i];
+
             Mesh mesh = meshLoader.load(jsonMesh);
-            meshes.add(mesh);
+
+            meshes[i] = mesh;
         }
 
-        return new Model(structure, meshes.toArray(new Mesh[meshes.size()]));
+        return meshes;
     }
 }

@@ -11,13 +11,9 @@ import java.io.Closeable;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-public class ResourceHelper
+public class ResourceLoader
 {
-    private ResourceHelper()
-    {
-    }
-
-    public static String readFromResource(Resources resources, int resourceId)
+    public String readFromResource(Resources resources, int resourceId)
     {
         InputStream inputStream;
 
@@ -35,7 +31,7 @@ public class ResourceHelper
         }
     }
 
-    public static String readFromAssetsAsString(AssetManager assetManager, String path)
+    public String readFromAssetsAsString(AssetManager assetManager, String path)
     {
         InputStream inputStream;
 
@@ -53,7 +49,7 @@ public class ResourceHelper
         }
     }
 
-    private static String readInputStreamAsString(InputStream inputStream)
+    private String readInputStreamAsString(InputStream inputStream)
     {
         InputStreamReader inputStreamReader = null;
         BufferedReader bufferedReader = null;
@@ -89,7 +85,7 @@ public class ResourceHelper
         }
     }
 
-    public static void closeResource(Closeable resource)
+    public void closeResource(Closeable resource)
     {
         if (resource != null)
         {
@@ -104,7 +100,7 @@ public class ResourceHelper
         }
     }
 
-    public static void closeDescriptor(AssetFileDescriptor assetDescriptor)
+    public void closeDescriptor(AssetFileDescriptor assetDescriptor)
     {
         if (assetDescriptor != null)
         {

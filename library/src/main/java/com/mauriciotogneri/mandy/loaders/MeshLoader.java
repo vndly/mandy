@@ -6,9 +6,6 @@ import com.mauriciotogneri.mandy.json.JsonMesh;
 import com.mauriciotogneri.mandy.json.JsonTriangle;
 import com.mauriciotogneri.mandy.resources.Mesh;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class MeshLoader
 {
     public Mesh load(JsonMesh json)
@@ -20,18 +17,18 @@ public class MeshLoader
 
     private float[] getBuffer(JsonMesh json)
     {
-        List<Triangle> triangles = getTriangles(json);
+        Triangle[] triangles = getTriangles(json.triangles);
 
         return getBuffer(triangles);
     }
 
-    private List<Triangle> getTriangles(JsonMesh mesh)
+    private Triangle[] getTriangles(JsonTriangle[] list)
     {
-        List<Triangle> result = new ArrayList<>(mesh.triangles.length);
+        Triangle[] triangles = new Triangle[list.length];
 
-        for (int i = 0; i < mesh.triangles.length; i++)
+        for (int i = 0; i < list.length; i++)
         {
-            JsonTriangle triangle = mesh.triangles[i];
+            JsonTriangle triangle = list[i];
 
             float red = triangle.color.red;
             float green = triangle.color.green;
@@ -50,15 +47,15 @@ public class MeshLoader
             float y3 = triangle.vertices[2].y;
             float z3 = 0;
 
-            result.add(new Triangle(x1, y1, z1, x2, y2, z2, x3, y3, z3, red, green, blue, alpha));
+            triangles[i] = new Triangle(x1, y1, z1, x2, y2, z2, x3, y3, z3, red, green, blue, alpha);
         }
 
-        return result;
+        return triangles;
     }
 
-    private float[] getBuffer(List<Triangle> triangles)
+    private float[] getBuffer(Triangle[] triangles)
     {
-        float[] buffer = new float[triangles.size() * Mesh.TRIANGLE_SIZE];
+        float[] buffer = new float[triangles.length * Mesh.TRIANGLE_SIZE];
 
         int index = 0;
 

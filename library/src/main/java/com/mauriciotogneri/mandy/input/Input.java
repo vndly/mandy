@@ -10,7 +10,6 @@ public class Input implements OnTouchListener
 {
     private final Object touchLock = new Object();
     private final TouchEvent[] touchEvents = new TouchEvent[TOUCH_EVENT_SIZE];
-
     private final Camera camera;
 
     private static final int TOUCH_EVENT_SIZE = 5;
