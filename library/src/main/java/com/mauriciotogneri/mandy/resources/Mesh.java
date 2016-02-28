@@ -9,8 +9,8 @@ import java.nio.FloatBuffer;
 public class Mesh
 {
     private final int mode;
-    private int numberOfTriangles;
-    private FloatBuffer bufferData;
+    private final int numberOfTriangles;
+    private final FloatBuffer bufferData;
 
     private static final int POSITION_DATA_SIZE = 3;
     private static final int POSITION_OFFSET = 0;
@@ -21,13 +21,10 @@ public class Mesh
 
     public static final int TRIANGLE_SIZE = (POSITION_DATA_SIZE + COLOR_DATA_SIZE) * 3;
 
-    public Mesh(int mode)
+    public Mesh(int mode, float[] buffer)
     {
         this.mode = mode;
-    }
 
-    public void load(float[] buffer)
-    {
         this.numberOfTriangles = buffer.length / (POSITION_DATA_SIZE + COLOR_DATA_SIZE);
 
         ByteBuffer byteBuffer = ByteBuffer.allocateDirect(buffer.length * BYTES_PER_FLOAT);

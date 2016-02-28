@@ -10,8 +10,6 @@ import java.io.BufferedReader;
 import java.io.Closeable;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ResourceHelper
 {
@@ -55,25 +53,7 @@ public class ResourceHelper
         }
     }
 
-    public static String[] readFromAssetsAsArray(AssetManager assetManager, String path)
-    {
-        InputStream inputStream;
-
-        try
-        {
-            inputStream = assetManager.open(path);
-
-            return readInputStreamAsArray(inputStream);
-        }
-        catch (Exception e)
-        {
-            Logger.error(e);
-
-            throw new RuntimeException("Unable to read assets: " + path);
-        }
-    }
-
-    public static String readInputStreamAsString(InputStream inputStream)
+    private static String readInputStreamAsString(InputStream inputStream)
     {
         InputStreamReader inputStreamReader = null;
         BufferedReader bufferedReader = null;
@@ -94,41 +74,6 @@ public class ResourceHelper
             }
 
             return builder.toString();
-        }
-        catch (Exception e)
-        {
-            Logger.error(e);
-
-            throw new RuntimeException("Unable to read input stream");
-        }
-        finally
-        {
-            closeResource(inputStream);
-            closeResource(inputStreamReader);
-            closeResource(bufferedReader);
-        }
-    }
-
-    public static String[] readInputStreamAsArray(InputStream inputStream)
-    {
-        InputStreamReader inputStreamReader = null;
-        BufferedReader bufferedReader = null;
-
-        try
-        {
-            List<String> result = new ArrayList<>();
-
-            inputStreamReader = new InputStreamReader(inputStream);
-            bufferedReader = new BufferedReader(inputStreamReader);
-
-            String nextLine;
-
-            while ((nextLine = bufferedReader.readLine()) != null)
-            {
-                result.add(nextLine);
-            }
-
-            return result.toArray(new String[result.size()]);
         }
         catch (Exception e)
         {

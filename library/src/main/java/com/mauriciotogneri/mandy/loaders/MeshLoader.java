@@ -13,10 +13,9 @@ public class MeshLoader
 {
     public Mesh load(JsonMesh json)
     {
-        Mesh mesh = new Mesh(GLES20.GL_TRIANGLES);
-        mesh.load(getBuffer(json));
+        float[] buffer = getBuffer(json);
 
-        return mesh;
+        return new Mesh(GLES20.GL_TRIANGLES, buffer);
     }
 
     private float[] getBuffer(JsonMesh json)

@@ -71,8 +71,7 @@ public class Structure
         {
             float[] buffer = shape.getShadow(color);
 
-            Mesh mesh = new Mesh(GLES20.GL_TRIANGLE_FAN);
-            mesh.load(buffer);
+            Mesh mesh = new Mesh(GLES20.GL_TRIANGLE_FAN, buffer);
 
             result.add(mesh);
         }
