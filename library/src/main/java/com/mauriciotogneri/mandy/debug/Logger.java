@@ -6,12 +6,16 @@ import com.mauriciotogneri.mandy.BuildConfig;
 
 public final class Logger
 {
-    private static OnLog onLog;
+    private static LogListener logListener;
     private static final boolean ENABLE_LOGS = BuildConfig.DEBUG;
 
     public enum LogLevel
     {
-        VERBOSE, DEBUG, INFO, WARNING, ERROR
+        VERBOSE, //
+        DEBUG, //
+        INFO, //
+        WARNING, //
+        ERROR
     }
 
     private Logger()
@@ -33,16 +37,24 @@ public final class Logger
         }
     }
 
-    public static void setOnLog(OnLog callback)
+    public static void setLogListener(LogListener callback)
     {
-        onLog = callback;
+        logListener = callback;
     }
 
     private static void log(LogLevel level, String tag, String message, Throwable throwable)
     {
-        if (onLog != null)
+        if (logListener != null)
         {
-            onLog.onLog(level, tag, message, throwable);
+            logListener.onLog(level, tag, message, throwable);
+        }
+    }
+
+    private static void log(LogLevel level, String tag, String message)
+    {
+        if (logListener != null)
+        {
+            logListener.onLog(level, tag, message);
         }
     }
 
@@ -65,7 +77,7 @@ public final class Logger
             Log.v(tag.toString(), message.toString());
         }
 
-        Logger.log(LogLevel.VERBOSE, tag.toString(), message.toString(), null);
+        Logger.log(LogLevel.VERBOSE, tag.toString(), message.toString());
     }
 
     public static void verbose(Object tag, Throwable throwable)
@@ -87,7 +99,7 @@ public final class Logger
             Log.v(tag, message.toString());
         }
 
-        Logger.log(LogLevel.VERBOSE, tag, message.toString(), null);
+        Logger.log(LogLevel.VERBOSE, tag, message.toString());
     }
 
     public static void verbose(Throwable throwable)
@@ -130,7 +142,7 @@ public final class Logger
                 Log.d(tag.toString(), message.toString());
             }
 
-            Logger.log(LogLevel.DEBUG, tag.toString(), message.toString(), null);
+            Logger.log(LogLevel.DEBUG, tag.toString(), message.toString());
         }
         catch (Exception e)
         {
@@ -166,7 +178,7 @@ public final class Logger
                 Log.d(tag, message.toString());
             }
 
-            Logger.log(LogLevel.DEBUG, tag, message.toString(), null);
+            Logger.log(LogLevel.DEBUG, tag, message.toString());
         }
         catch (Exception e)
         {
@@ -221,7 +233,7 @@ public final class Logger
                 Log.i(tag.toString(), message.toString());
             }
 
-            Logger.log(LogLevel.INFO, tag.toString(), message.toString(), null);
+            Logger.log(LogLevel.INFO, tag.toString(), message.toString());
         }
         catch (Exception e)
         {
@@ -257,7 +269,7 @@ public final class Logger
                 Log.i(tag, message.toString());
             }
 
-            Logger.log(LogLevel.INFO, tag, message.toString(), null);
+            Logger.log(LogLevel.INFO, tag, message.toString());
         }
         catch (Exception e)
         {
@@ -312,7 +324,7 @@ public final class Logger
                 Log.w(tag.toString(), message.toString());
             }
 
-            Logger.log(LogLevel.WARNING, tag.toString(), message.toString(), null);
+            Logger.log(LogLevel.WARNING, tag.toString(), message.toString());
         }
         catch (Exception e)
         {
@@ -348,7 +360,7 @@ public final class Logger
                 Log.w(tag, message.toString());
             }
 
-            Logger.log(LogLevel.WARNING, tag, message.toString(), null);
+            Logger.log(LogLevel.WARNING, tag, message.toString());
         }
         catch (Exception e)
         {
@@ -403,7 +415,7 @@ public final class Logger
                 Log.e(tag.toString(), message.toString());
             }
 
-            Logger.log(LogLevel.ERROR, tag.toString(), message.toString(), null);
+            Logger.log(LogLevel.ERROR, tag.toString(), message.toString());
         }
         catch (Exception e)
         {
@@ -439,7 +451,7 @@ public final class Logger
                 Log.e(tag, message.toString());
             }
 
-            Logger.log(LogLevel.ERROR, tag, message.toString(), null);
+            Logger.log(LogLevel.ERROR, tag, message.toString());
         }
         catch (Exception e)
         {
@@ -466,8 +478,10 @@ public final class Logger
         }
     }
 
-    public interface OnLog
+    public interface LogListener
     {
         void onLog(LogLevel level, String tag, String message, Throwable throwable);
+
+        void onLog(LogLevel level, String tag, String message);
     }
 }

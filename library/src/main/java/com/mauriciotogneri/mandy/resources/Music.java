@@ -11,11 +11,12 @@ import com.mauriciotogneri.mandy.helpers.ResourceHelper;
 public class Music
 {
     private final String path;
-    private MediaPlayer player;
+    private final MediaPlayer player;
     private int position = 0;
 
     public Music(String path)
     {
+        this.player = new MediaPlayer();
         this.path = path;
     }
 
@@ -27,7 +28,6 @@ public class Music
         {
             assetDescriptor = assetManager.openFd(path);
 
-            player = new MediaPlayer();
             player.setDataSource(assetDescriptor.getFileDescriptor(), assetDescriptor.getStartOffset(), assetDescriptor.getLength());
             player.setAudioStreamType(AudioManager.STREAM_MUSIC);
             player.setVolume(0.2f, 0.2f);
@@ -46,7 +46,7 @@ public class Music
 
     public void resume()
     {
-        if ((player != null) && (!player.isPlaying()))
+        if (!player.isPlaying())
         {
             try
             {
@@ -62,39 +62,42 @@ public class Music
 
     public void pause()
     {
-        if (player != null)
+        try
         {
-            try
-            {
-                player.pause();
-                position = player.getCurrentPosition();
-            }
-            catch (Exception e)
-            {
-                Logger.error(e);
-            }
+            player.pause();
+            position = player.getCurrentPosition();
+        }
+        catch (Exception e)
+        {
+            Logger.error(e);
         }
     }
 
     public void stop()
     {
-        if (player != null)
+        try
         {
-            try
-            {
-                player.stop();
-                player.seekTo(0);
-                player.release();
-            }
-            catch (Exception e)
-            {
-                Logger.error(e);
-            }
+            player.stop();
+            player.seekTo(0);
+            //player.release();
+        }
+        catch (Exception e)
+        {
+            Logger.error(e);
         }
     }
 
-    public boolean isPlaying()
+    public void destroy()
     {
-        return ((player != null) && player.isPlaying());
+        try
+        {
+            player.stop();
+            player.seekTo(0);
+            player.release();
+        }
+        catch (Exception e)
+        {
+            Logger.error(e);
+        }
     }
 }

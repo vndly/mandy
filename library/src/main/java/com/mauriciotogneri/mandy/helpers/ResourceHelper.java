@@ -15,6 +15,10 @@ import java.util.List;
 
 public class ResourceHelper
 {
+    private ResourceHelper()
+    {
+    }
+
     public static String readFromResource(Resources resources, int resourceId)
     {
         InputStream inputStream;
