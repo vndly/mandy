@@ -14,13 +14,11 @@ import org.jbox2d.dynamics.BodyType;
 
 public class GameObject implements Entity
 {
-    protected float z;
-
+    protected final float z;
     protected final Body body;
-    protected final Mesh[] meshes;
-    protected final Mesh[] shadow;
-
-    private DisplayMode displayMode;
+    private final Mesh[] meshes;
+    private final Mesh[] shadow;
+    private final DisplayMode displayMode;
 
     public enum DisplayMode
     {
@@ -58,11 +56,6 @@ public class GameObject implements Entity
     @Override
     public void update(float delta, Input input, Camera camera)
     {
-    }
-
-    public void setDisplayMode(DisplayMode displayMode)
-    {
-        this.displayMode = displayMode;
     }
 
     @Override
