@@ -13,12 +13,12 @@ public class Shape
         this.vertices = vertices;
     }
 
-    public Vec2[] getVertices()
+    public Vec2[] vertices()
     {
         return vertices;
     }
 
-    public float[] getShadow(int color)
+    public float[] shadow(int color)
     {
         float[] buffer = new float[vertices.length * (3 + 4)];
 

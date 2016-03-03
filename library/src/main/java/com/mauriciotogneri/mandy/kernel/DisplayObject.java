@@ -22,7 +22,7 @@ public class DisplayObject implements Entity
     protected float scaleX;
     protected float scaleY;
 
-    protected final Mesh[] meshes;
+    private final Mesh[] meshes;
 
     public DisplayObject(float x, float y, float z, Model model)
     {
@@ -40,7 +40,7 @@ public class DisplayObject implements Entity
         this.startScaleX = scaleX;
         this.startScaleY = scaleY;
 
-        this.meshes = model.meshes;
+        this.meshes = model.meshes();
     }
 
     public void reset()

@@ -28,12 +28,12 @@ public class ModelLoader
         StructureLoader structureLoader = new StructureLoader();
         Structure structure = structureLoader.load(jsonModel.body);
 
-        Mesh[] meshes = getMeshes(jsonModel.meshes);
+        Mesh[] meshes = meshes(jsonModel.meshes);
 
         return new Model(structure, meshes);
     }
 
-    private Mesh[] getMeshes(JsonMesh[] list)
+    private Mesh[] meshes(JsonMesh[] list)
     {
         Mesh[] meshes = new Mesh[list.length];
         MeshLoader meshLoader = new MeshLoader();

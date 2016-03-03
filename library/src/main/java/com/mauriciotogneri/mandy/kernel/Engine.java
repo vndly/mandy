@@ -48,7 +48,7 @@ public class Engine implements android.opengl.GLSurfaceView.Renderer
     {
         if (camera == null)
         {
-            camera = new Camera(game.getScreenSize(), width, height);
+            camera = new Camera(game.screenSize(), width, height);
         }
 
         if (input == null)

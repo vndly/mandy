@@ -12,7 +12,7 @@ public final class Logger
     public enum LogLevel
     {
         VERBOSE, //
-        DEBUG, //
+        DEBUG, //getDefaultTag
         INFO, //
         WARNING, //
         ERROR
@@ -22,7 +22,7 @@ public final class Logger
     {
     }
 
-    private static String getDefaultTag()
+    private static String defaultTag()
     {
         try
         {
@@ -92,7 +92,7 @@ public final class Logger
 
     public static void verbose(Object message)
     {
-        String tag = Logger.getDefaultTag();
+        String tag = Logger.defaultTag();
 
         if (ENABLE_LOGS)
         {
@@ -104,7 +104,7 @@ public final class Logger
 
     public static void verbose(Throwable throwable)
     {
-        String tag = Logger.getDefaultTag();
+        String tag = Logger.defaultTag();
 
         if (ENABLE_LOGS)
         {
@@ -171,7 +171,7 @@ public final class Logger
     {
         try
         {
-            String tag = Logger.getDefaultTag();
+            String tag = Logger.defaultTag();
 
             if (ENABLE_LOGS)
             {
@@ -190,7 +190,7 @@ public final class Logger
     {
         try
         {
-            String tag = Logger.getDefaultTag();
+            String tag = Logger.defaultTag();
 
             if (ENABLE_LOGS)
             {
@@ -262,7 +262,7 @@ public final class Logger
     {
         try
         {
-            String tag = Logger.getDefaultTag();
+            String tag = Logger.defaultTag();
 
             if (ENABLE_LOGS)
             {
@@ -281,7 +281,7 @@ public final class Logger
     {
         try
         {
-            String tag = Logger.getDefaultTag();
+            String tag = Logger.defaultTag();
 
             if (ENABLE_LOGS)
             {
@@ -353,7 +353,7 @@ public final class Logger
     {
         try
         {
-            String tag = Logger.getDefaultTag();
+            String tag = Logger.defaultTag();
 
             if (ENABLE_LOGS)
             {
@@ -372,7 +372,7 @@ public final class Logger
     {
         try
         {
-            String tag = Logger.getDefaultTag();
+            String tag = Logger.defaultTag();
 
             if (ENABLE_LOGS)
             {
@@ -444,7 +444,7 @@ public final class Logger
     {
         try
         {
-            String tag = Logger.getDefaultTag();
+            String tag = Logger.defaultTag();
 
             if (ENABLE_LOGS)
             {
@@ -463,7 +463,7 @@ public final class Logger
     {
         try
         {
-            String tag = Logger.getDefaultTag();
+            String tag = Logger.defaultTag();
 
             if (ENABLE_LOGS)
             {

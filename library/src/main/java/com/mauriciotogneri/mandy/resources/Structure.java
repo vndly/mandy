@@ -38,7 +38,7 @@ public class Structure
 
     private void addFixture(Body body, Shape shape, int collisionCategory, int collisionMask, boolean isSensor)
     {
-        Vec2[] vertices = shape.getVertices();
+        Vec2[] vertices = shape.vertices();
 
         PolygonShape polygonShape = new PolygonShape();
         polygonShape.set(vertices, vertices.length);
@@ -60,7 +60,7 @@ public class Structure
         body.createFixture(fixtureDef);
     }
 
-    public Mesh[] getShadows(int color)
+    public Mesh[] shadows(int color)
     {
         Mesh[] meshes = new Mesh[shapes.length];
 
@@ -68,7 +68,7 @@ public class Structure
         {
             Shape shape = shapes[i];
 
-            float[] buffer = shape.getShadow(color);
+            float[] buffer = shape.shadow(color);
 
             Mesh mesh = new Mesh(GLES20.GL_TRIANGLE_FAN, buffer);
 

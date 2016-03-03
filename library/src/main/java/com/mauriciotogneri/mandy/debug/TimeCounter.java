@@ -24,10 +24,10 @@ public class TimeCounter
         this.name = name;
         this.timeUnit = timeUnit;
         this.enabled = enabled;
-        this.abbreviation = getAbbreviation(timeUnit);
+        this.abbreviation = abbreviation(timeUnit);
     }
 
-    private String getAbbreviation(TimeUnit timeUnit)
+    private String abbreviation(TimeUnit timeUnit)
     {
         switch (timeUnit)
         {

@@ -19,7 +19,7 @@ public class Physics
 
     public Physics()
     {
-        this.world = getWorld();
+        this.world = world();
     }
 
     public void setContactListener(ContactListener contactListener)
@@ -39,10 +39,10 @@ public class Physics
 
     public void reset()
     {
-        world = getWorld();
+        world = world();
     }
 
-    private World getWorld()
+    private World world()
     {
         Vec2 gravity = new Vec2(0, 0);
         IWorldPool pool = new DefaultWorldPool(10, 10);

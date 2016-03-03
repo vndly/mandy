@@ -16,8 +16,8 @@ public class Camera
         float ratioHeightWidth = (float) screenHeight / (float) screenWidth;
         float ratioWidthHeight = (float) screenWidth / (float) screenHeight;
 
-        this.width = screenSize.getWidth(ratioHeightWidth);
-        this.height = screenSize.getHeight(ratioWidthHeight);
+        this.width = screenSize.width(ratioHeightWidth);
+        this.height = screenSize.height(ratioWidthHeight);
 
         this.screenWidth = screenWidth;
         this.screenHeight = screenHeight;

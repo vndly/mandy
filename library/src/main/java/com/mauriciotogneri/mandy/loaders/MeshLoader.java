@@ -10,19 +10,19 @@ public class MeshLoader
 {
     public Mesh load(JsonMesh json)
     {
-        float[] buffer = getBuffer(json);
+        float[] buffer = buffer(json);
 
         return new Mesh(GLES20.GL_TRIANGLES, buffer);
     }
 
-    private float[] getBuffer(JsonMesh json)
+    private float[] buffer(JsonMesh json)
     {
-        Triangle[] triangles = getTriangles(json.triangles);
+        Triangle[] triangles = triangles(json.triangles);
 
-        return getBuffer(triangles);
+        return buffer(triangles);
     }
 
-    private Triangle[] getTriangles(JsonTriangle[] list)
+    private Triangle[] triangles(JsonTriangle[] list)
     {
         Triangle[] triangles = new Triangle[list.length];
 
@@ -53,7 +53,7 @@ public class MeshLoader
         return triangles;
     }
 
-    private float[] getBuffer(Triangle[] triangles)
+    private float[] buffer(Triangle[] triangles)
     {
         float[] buffer = new float[triangles.length * Mesh.TRIANGLE_SIZE];
 

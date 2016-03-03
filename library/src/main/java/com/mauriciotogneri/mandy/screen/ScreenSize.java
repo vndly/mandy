@@ -11,12 +11,12 @@ public class ScreenSize
         this.height = height;
     }
 
-    public int getWidth(float ratio)
+    public int width(float ratio)
     {
         return (width != 0) ? width : (int) (height / ratio);
     }
 
-    public int getHeight(float ratio)
+    public int height(float ratio)
     {
         return (height != 0) ? height : (int) (width / ratio);
     }

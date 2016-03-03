@@ -11,5 +11,5 @@ public interface Game
 
     void onRender(Renderer renderer, Camera camera);
 
-    ScreenSize getScreenSize();
+    ScreenSize screenSize();
 }

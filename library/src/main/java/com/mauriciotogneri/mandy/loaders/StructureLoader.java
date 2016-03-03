@@ -12,12 +12,12 @@ public class StructureLoader
 {
     public Structure load(JsonBody json)
     {
-        Shape[] shapes = getShapes(json.shapes);
+        Shape[] shapes = shapes(json.shapes);
 
         return new Structure(shapes);
     }
 
-    private Shape[] getShapes(JsonShape[] list)
+    private Shape[] shapes(JsonShape[] list)
     {
         Shape[] shapes = new Shape[list.length];
 
@@ -25,7 +25,7 @@ public class StructureLoader
         {
             JsonShape shape = list[i];
 
-            Vec2[] vertices = getVertices(shape.vertices);
+            Vec2[] vertices = vertices(shape.vertices);
 
             shapes[i] = new Shape(vertices);
         }
@@ -33,7 +33,7 @@ public class StructureLoader
         return shapes;
     }
 
-    private Vec2[] getVertices(JsonVertex[] list)
+    private Vec2[] vertices(JsonVertex[] list)
     {
         Vec2[] vertices = new Vec2[list.length];
 
