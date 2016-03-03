@@ -66,29 +66,29 @@ public class Renderer
         GLES20.glDisableVertexAttribArray(positionHandler);
     }
 
-    public void render(Mesh mesh, float x, float y, float z, float scaleX, float scaleY, float angle)
+    public void render(Mesh mesh, float x, float y, float scaleX, float scaleY, float angle)
     {
-        moveTo(x, y, z, scaleX, scaleY, angle);
+        moveTo(x, y, scaleX, scaleY, angle);
 
         mesh.render(positionHandler, colorHandler);
     }
 
-    public void render(Mesh[] meshes, Vec2 position, float z, float scaleX, float scaleY, float angle)
+    public void render(Mesh[] meshes, Vec2 position, float scaleX, float scaleY, float angle)
     {
-        render(meshes, position.x, position.y, z, scaleX, scaleY, angle);
+        render(meshes, position.x, position.y, scaleX, scaleY, angle);
     }
 
-    public void render(Mesh[] meshes, float x, float y, float z, float scaleX, float scaleY, float angle)
+    public void render(Mesh[] meshes, float x, float y, float scaleX, float scaleY, float angle)
     {
-        moveTo(x, y, z, scaleX, scaleY, angle);
+        moveTo(x, y, scaleX, scaleY, angle);
 
         for (Mesh mesh : meshes)
         {
-            render(mesh, x, y, z, scaleX, scaleY, angle);
+            render(mesh, x, y, scaleX, scaleY, angle);
         }
     }
 
-    private void moveTo(float x, float y, float z, float scaleX, float scaleY, float angle)
+    private void moveTo(float x, float y, float scaleX, float scaleY, float angle)
     {
         Matrix.setIdentityM(modelMatrix, 0);
         Matrix.translateM(modelMatrix, 0, x, y, 0);

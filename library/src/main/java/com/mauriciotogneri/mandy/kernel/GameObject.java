@@ -14,7 +14,6 @@ import org.jbox2d.dynamics.BodyType;
 
 public class GameObject implements Entity
 {
-    private final float z;
     protected final Body body;
     private final Mesh[] meshes;
     private final Mesh[] shadow;
@@ -37,9 +36,8 @@ public class GameObject implements Entity
         }
     }
 
-    public GameObject(float x, float y, float z, BodyType type, Model model, Physics physics, int category, int collisionMask, boolean isSensor)
+    public GameObject(float x, float y, BodyType type, Model model, Physics physics, int category, int collisionMask, boolean isSensor)
     {
-        this.z = z;
         this.body = model.structure().addTo(x, y, type, physics, category, collisionMask, isSensor);
         this.meshes = model.meshes();
         this.shadow = model.structure().shadows(Color.argb(255, 255, 100, 180)); // pink
@@ -63,12 +61,12 @@ public class GameObject implements Entity
     {
         if (displayMode.displayMeshes())
         {
-            renderer.render(meshes, body.getPosition(), z, 1, 1, body.getAngle());
+            renderer.render(meshes, body.getPosition(), 1, 1, body.getAngle());
         }
 
         if (displayMode.displayShadow())
         {
-            renderer.render(shadow, body.getPosition(), z, 1, 1, body.getAngle());
+            renderer.render(shadow, body.getPosition(), 1, 1, body.getAngle());
         }
     }
 

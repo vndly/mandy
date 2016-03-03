@@ -10,32 +10,28 @@ public class DisplayObject implements Entity
 {
     private final float startX;
     private final float startY;
-    private final float startZ;
 
     private final float startScaleX;
     private final float startScaleY;
 
     protected float x;
     protected float y;
-    protected float z;
 
     protected float scaleX;
     protected float scaleY;
 
     private final Mesh[] meshes;
 
-    public DisplayObject(float x, float y, float z, Model model)
+    public DisplayObject(float x, float y, Model model)
     {
         this.x = x;
         this.y = y;
-        this.z = z;
 
         this.scaleX = 1;
         this.scaleY = 1;
 
         this.startX = x;
         this.startY = y;
-        this.startZ = z;
 
         this.startScaleX = scaleX;
         this.startScaleY = scaleY;
@@ -47,7 +43,6 @@ public class DisplayObject implements Entity
     {
         this.x = startX;
         this.y = startY;
-        this.z = startZ;
 
         this.scaleX = startScaleX;
         this.scaleY = startScaleY;
@@ -61,6 +56,6 @@ public class DisplayObject implements Entity
     @Override
     public void render(Renderer renderer)
     {
-        renderer.render(meshes, x, y, z, scaleX, scaleY, 0);
+        renderer.render(meshes, x, y, scaleX, scaleY, 0);
     }
 }
