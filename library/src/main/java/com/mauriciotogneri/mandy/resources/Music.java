@@ -49,7 +49,6 @@ public class Music
         {
             player.stop();
             player.seekTo(0);
-            //player.release();
         }
         catch (Exception e)
         {
