@@ -2,22 +2,21 @@ package com.mauriciotogneri.mandy.loaders;
 
 import android.opengl.GLES20;
 
-import com.mauriciotogneri.mandy.json.JsonMesh;
 import com.mauriciotogneri.mandy.json.JsonTriangle;
 import com.mauriciotogneri.mandy.resources.Mesh;
 
 public class MeshLoader
 {
-    public Mesh load(JsonMesh json)
+    public Mesh load(JsonTriangle[] json)
     {
         float[] buffer = buffer(json);
 
         return new Mesh(GLES20.GL_TRIANGLES, buffer);
     }
 
-    private float[] buffer(JsonMesh json)
+    private float[] buffer(JsonTriangle[] json)
     {
-        Triangle[] triangles = triangles(json.triangles);
+        Triangle[] triangles = triangles(json);
 
         return buffer(triangles);
     }

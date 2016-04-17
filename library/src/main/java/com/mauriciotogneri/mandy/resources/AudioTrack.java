@@ -5,6 +5,7 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 
 import com.mauriciotogneri.mandy.debug.Logger;
+import com.mauriciotogneri.mandy.helpers.ResourceLoader;
 
 public class AudioTrack
 {
@@ -34,5 +35,10 @@ public class AudioTrack
 
             throw new RuntimeException("Unable to load music: " + assetDescriptor.toString());
         }
+    }
+
+    public void close(ResourceLoader resourceLoader)
+    {
+        resourceLoader.closeDescriptor(assetDescriptor);
     }
 }
