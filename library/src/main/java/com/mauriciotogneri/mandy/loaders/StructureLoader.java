@@ -17,7 +17,7 @@ public class StructureLoader
         {
             shapes = shapes(json);
         }
-        else
+        else if (list.length == 1)
         {
             JsonTriangle[] triangles = list[0];
             shapes = new Shape[triangles.length];
@@ -37,6 +37,10 @@ public class StructureLoader
 
                 shapes[i] = new Shape(vertices);
             }
+        }
+        else
+        {
+            throw new RuntimeException("The model contains more than one mesh. The body cannot be inferred from it.");
         }
 
         return new Structure(shapes);
