@@ -40,7 +40,7 @@ public class StructureLoader
         }
         else
         {
-            throw new RuntimeException("The model contains more than one mesh. The body cannot be inferred from it.");
+           shapes = new Shape[0];
         }
 
         return new Structure(shapes);
