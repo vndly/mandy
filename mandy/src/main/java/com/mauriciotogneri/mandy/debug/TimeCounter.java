@@ -62,7 +62,7 @@ public class TimeCounter
 
             textView.post(new Runnable()
             {
-                final String value = timeUnit.convert(time / times, TimeUnit.NANOSECONDS) + " " + abbreviation;
+                final String value = String.format("%s %s", timeUnit.convert(time / times, TimeUnit.NANOSECONDS), abbreviation);
 
                 @Override
                 public void run()

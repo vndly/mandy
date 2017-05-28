@@ -1,12 +1,11 @@
 package com.mauriciotogneri.mandy.graphics;
 
+import android.graphics.PointF;
 import android.opengl.GLES20;
 import android.opengl.Matrix;
 
 import com.mauriciotogneri.mandy.resources.Mesh;
 import com.mauriciotogneri.mandy.screen.Camera;
-
-import org.jbox2d.common.Vec2;
 
 public class Renderer
 {
@@ -73,7 +72,7 @@ public class Renderer
         mesh.render(positionHandler, colorHandler);
     }
 
-    public void render(Mesh[] meshes, Vec2 position, float scaleX, float scaleY, float angle)
+    public void render(Mesh[] meshes, PointF position, float scaleX, float scaleY, float angle)
     {
         render(meshes, position.x, position.y, scaleX, scaleY, angle);
     }

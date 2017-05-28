@@ -2,7 +2,6 @@ package com.mauriciotogneri.mandy.kernel;
 
 import android.view.View;
 
-import com.mauriciotogneri.mandy.debug.Logger;
 import com.mauriciotogneri.mandy.graphics.Renderer;
 import com.mauriciotogneri.mandy.input.Input;
 import com.mauriciotogneri.mandy.screen.Camera;
@@ -27,7 +26,10 @@ public class Engine implements android.opengl.GLSurfaceView.Renderer
 
     private enum Status
     {
-        RUNNING, IDLE, PAUSED, FINISHED
+        RUNNING,
+        IDLE,
+        PAUSED,
+        FINISHED
     }
 
     public Engine(Game game, View view, String vertexShaderSource, String fragmentShaderSource)
@@ -126,7 +128,7 @@ public class Engine implements android.opengl.GLSurfaceView.Renderer
                         }
                         catch (Exception e)
                         {
-                            Logger.error(e);
+                            e.printStackTrace();
                         }
                     }
                 }

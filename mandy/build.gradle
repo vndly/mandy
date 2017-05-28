@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'maven-publish'
 
-def releaseVersion = '0.1.0'
+def releaseVersion = '0.2.0'
 
 android
 {
