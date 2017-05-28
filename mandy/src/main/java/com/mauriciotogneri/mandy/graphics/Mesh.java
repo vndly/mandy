@@ -1,4 +1,4 @@
-package com.mauriciotogneri.mandy.resources;
+package com.mauriciotogneri.mandy.graphics;
 
 import android.opengl.GLES20;
 

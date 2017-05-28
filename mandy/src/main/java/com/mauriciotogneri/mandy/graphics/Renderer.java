@@ -4,7 +4,6 @@ import android.graphics.PointF;
 import android.opengl.GLES20;
 import android.opengl.Matrix;
 
-import com.mauriciotogneri.mandy.resources.Mesh;
 import com.mauriciotogneri.mandy.screen.Camera;
 
 public class Renderer
