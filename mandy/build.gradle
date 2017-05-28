@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'maven-publish'
 
-def releaseVersion = '0.2.0'
+def releaseVersion = '0.3.0'
 
 android
 {
@@ -17,7 +17,7 @@ android
     defaultConfig
     {
         minSdkVersion 14
-        targetSdkVersion 22
+        targetSdkVersion 25
         versionCode 1
         versionName releaseVersion
     }
@@ -31,12 +31,15 @@ android
 
 task sourceJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
-    classifier "source"
+    classifier 'source'
 }
 
-publishing {
-    publications {
-        bar(MavenPublication) {
+publishing
+{
+    publications
+    {
+        bar(MavenPublication)
+        {
             groupId 'com.mauriciotogneri'
             artifactId 'mandy'
             version releaseVersion
@@ -44,12 +47,13 @@ publishing {
             artifact("$buildDir/outputs/aar/mandy-release.aar")
         }
     }
-    repositories {
+
+    repositories
+    {
         mavenLocal()
     }
 }
 
 dependencies
 {
-    compile 'com.google.code.gson:gson:2.8.0'
 }
